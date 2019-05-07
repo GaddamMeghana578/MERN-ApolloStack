@@ -1,0 +1,27 @@
+{
+  "name": "visitor",
+  "version": "0.0.1",
+  "main": "server.js",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@babel/cli": "^7.4.3",
+    "@babel/core": "^7.4.3",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.3",
+    "apollo-server": "^2.4.8",
+    "apollo-server-express": "^2.4.8",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "graphql": "^0.13.2",
+    "graphql-tools": "^4.0.4",
+    "graphql-typings": "^0.0.1-beta-2",
+    "nodemon": "^1.19.0",
+    "uuid": "~3.3.2"
+  },
+  "engines": {
+    "yarn": ">= 1.0.0"
+  },
+  "scripts": {
+    "start": "nodemon --exec babel-node server.js"
+  }
+}
