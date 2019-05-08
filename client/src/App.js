@@ -2,6 +2,7 @@ import React from "react";
 import { gql } from "apollo-boost";
 import { Mutation, Query } from "react-apollo";
 import ToDo from "./ToDo.js";
+import Table from "./Table.js";
 const GET_USER = gql`
   query {
     users {
@@ -13,8 +14,8 @@ const GET_USER = gql`
 `;
 
 const ADD_USER = gql`
-  mutation AddUser($name: String!, $age: Int!, $uuid: String!) {
-    addUser(name: $name, age: $age, uuid: $uuid) {
+  mutation AddUser($input: addUserInput!) {
+    addUser(input: $input) {
       name
       age
       uuid
@@ -39,8 +40,13 @@ export default class App extends React.Component {
       return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
     });
 
+    const payload = {};
+    payload.name = user.name;
+    payload.age = user.age;
+    payload.uuid = uuid;
+
     addUser({
-      variables: { name: user.name, age: user.age, uuid: uuid }
+      variables: { input: payload }
     }).then(res => {
       console.log("data saved successfully", res.data);
       this.setState({
@@ -82,6 +88,7 @@ export default class App extends React.Component {
                       ))}
                     </ul>
                     <ToDo handleSubmit={this.handleSubmit} addUser={addUser} />
+                    <Table user={data.users} />
                   </div>
                 );
               }}

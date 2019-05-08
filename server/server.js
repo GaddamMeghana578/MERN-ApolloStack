@@ -54,7 +54,7 @@ const resolvers = {
       return await User.findOneAndUpdate({ uuid }, input, { new: true });
     },
     async deleteUser(_, { uuid }) {
-      return await User.findByIdAndRemove(uuid);
+      return await User.findOneAndRemove({ uuid });
     }
   }
 };
