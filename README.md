@@ -1,8 +1,8 @@
-# apollo-app
+# MERN + Apollo Client + Apollo Server
 
 This is a MERN with Apollo Stack project.
 
-#Description 
+# Description 
 
 GraphQL is an open source data querying language that is used for building APIs for web and mobile applications. It is a great replacement for REST and other web service architectures. It allows the client side of the app to get the data in any structure.
 
