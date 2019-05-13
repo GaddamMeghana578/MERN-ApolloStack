@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { gql } from "apollo-boost";
 import { Mutation } from "react-apollo";
+import _ from "lodash";
 
 const UPDATE_USER = gql`
   mutation updateUser($uuid: String!, $input: updateUserInput!) {
@@ -116,8 +117,7 @@ export default class Table extends Component {
                 {Object.keys(user).length === 0 &&
                 user.constructor === Object ? null : (
                   <tbody>
-                    {user.map((user, u) => {
-                      return (
+                    {_(user).orderBy("name", "asc").map((user, u) => (
                         <tr key={u}>
                           <td>{u}</td>
                           <td>{user.name}</td>
@@ -138,8 +138,7 @@ export default class Table extends Component {
                             onClick={e => this.getUserDetails(e, user)}
                           />
                         </tr>
-                      );
-                    })}
+                      )).value()}
                   </tbody>
                 )}
               </table>
