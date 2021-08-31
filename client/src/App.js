@@ -27,18 +27,19 @@ export default class App extends React.Component {
   state = {
     user: [],
     userDetails: {},
-    submitted: false
+    submitted: false,
   };
 
   handleSubmit = (user, addUser) => {
     var d = new Date().getTime();
-    var uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(
-      c
-    ) {
-      var r = (d + Math.random() * 16) % 16 | 0;
-      d = Math.floor(d / 16);
-      return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
-    });
+    var uuid = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+      /[xy]/g,
+      function (c) {
+        var r = (d + Math.random() * 16) % 16 | 0;
+        d = Math.floor(d / 16);
+        return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
+      }
+    );
 
     const payload = {};
     payload.name = user.name;
@@ -46,12 +47,12 @@ export default class App extends React.Component {
     payload.uuid = uuid;
 
     addUser({
-      variables: { input: payload }
-    }).then(res => {
+      variables: { input: payload },
+    }).then((res) => {
       console.log("data saved successfully", res.data);
       this.setState({
         user: [...this.state.user, res.data.addUser],
-        submitted: true
+        submitted: true,
       });
     }, console.error);
   };
@@ -80,13 +81,6 @@ export default class App extends React.Component {
                 }
                 return (
                   <div>
-                    <ul>
-                      {data.users.map(({ name, age, uuid }) => (
-                        <li key={uuid}>
-                          {name} - {age}
-                        </li>
-                      ))}
-                    </ul>
                     <ToDo handleSubmit={this.handleSubmit} addUser={addUser} />
                     <Table user={data.users} />
                   </div>

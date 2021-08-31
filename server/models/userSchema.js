@@ -4,16 +4,16 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
 
   age: {
     type: Number,
-    required: true
+    required: true,
   },
   uuid: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 export default mongoose.model("User", UserSchema);

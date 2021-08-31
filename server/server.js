@@ -42,7 +42,7 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     users: async () => await User.find({}).exec(),
-    user: async (_, { uuid }) => await User.findOne({ uuid })
+    user: async (_, { uuid }) => await User.findOne({ uuid }),
   },
 
   Mutation: {
@@ -55,8 +55,8 @@ const resolvers = {
     },
     async deleteUser(_, { uuid }) {
       return await User.findOneAndRemove({ uuid });
-    }
-  }
+    },
+  },
 };
 
 const server = new ApolloServer({ typeDefs, resolvers });
@@ -68,7 +68,7 @@ mongoose.Promise = global.Promise;
 mongoose
   .connect("mongodb://localhost:27017/dev", { useNewUrlParser: true })
   .then(() => console.log("MongoDB connected"))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 server.applyMiddleware({ app });
 
